@@ -1,0 +1,23 @@
+package LoginUsuario;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UsuarioRepo extends JpaRepository<Usuario, Integer> {
+    static Object save(UsuarioModel usuarioModel) {
+        return usuarioModel;
+    }
+
+    boolean existBySenha(String senha_usuario);
+    boolean existByEmail(String email_usuario);
+
+    static Object save(LoginModel usuarioModel) {
+        return usuarioModel;
+    }
+
+    @Override
+    Optional<Usuario> findById(Integer integer);
+}
